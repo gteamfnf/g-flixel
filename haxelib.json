@@ -1,0 +1,13 @@
+{
+	"name": "flixel-brainy",
+	"url" : "https://github.com/Brainy0789/flixel-brainy",
+	"license": "MIT",
+	"tags": ["game", "openfl", "flash", "html5", "neko", "cpp", "android", "ios", "cross"],
+	"description": "Brainy's fork of HaxeFlixel!",
+	"version": "1.0.0",
+	"releasenote": "Initial release",
+	"contributors": ["Brainy7890"],
+	"dependencies": {
+		"ChromaSave": ""
+	}
+}
