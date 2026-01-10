@@ -209,6 +209,14 @@ class FlxG
 	public static var save(default, null):FlxSave = new FlxSave();
 	#end
 
+	#if FLX_CHROMA_SAVE
+	/**
+	 * A `FlxChromaSaveManager` for any use!
+	 * Used internally by flixel-brainy
+	 */
+	public static var chromaSave(default, null):FlxChromaSaveManager = new FlxChromaSaveManager();
+	#end
+
 	/**
 	 * A `FlxRandom` object which can be used to generate random numbers.
 	 * Also used by Flixel internally.
@@ -723,7 +731,7 @@ class FlxG
 		FlxObject.defaultPixelPerfectPosition = renderBlit;
 	}
 
-	#if FLX_SAVE
+	#if (FLX_SAVE)
 	static function initSave()
 	{
 		// Don't init if the FlxG.save.bind was manually called before the FlxGame was created

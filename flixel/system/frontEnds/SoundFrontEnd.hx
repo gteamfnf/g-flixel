@@ -449,6 +449,26 @@ class SoundFrontEnd
 			muted = FlxG.save.data.mute;
 		}
 	}
+	#else #if FLX_CHROMA_SAVE
+	function loadSavedPrefs():Void
+	{
+		if (FlxG.chromaSave.getField('flixel', 'sound') == null)
+		{
+			FlxG.chromaSave.setField('flixel', 'sound', FlxChromaSaveManager.getSoundData(volume, mute));
+			return;
+		}
+
+		if (FlxG.chromaSave.getField('flixel', 'sound').volume != null)
+		{
+			volume = FlxG.chromaSave.getField('flixel', 'sound').volume;
+		}
+
+		if (FlxG.chromaSave.getField('flixel', 'sound').mute != null)
+		{
+			mute = FlxG.chromaSave.getField('flixel', 'sound'). mute;
+		}
+	}
+	#end
 	#end
 
 	function set_volume(Volume:Float):Float
