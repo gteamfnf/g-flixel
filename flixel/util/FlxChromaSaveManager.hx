@@ -50,4 +50,12 @@ class FlxChromaSaveManager
 
         return saves.get(save).get(key);
     }
+
+    public function fromFlxG(save:String, slot:Int = 0):ChromaSave {
+        var key = getSlotString(save, slot);
+        var newChromaSave = ChromaConverter.fromFlxG(save);
+        saves.set(key, newChromaSave);
+        return newChromaSave;
+    }
+
 }
