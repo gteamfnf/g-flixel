@@ -201,20 +201,20 @@ class FlxG
 	 */
 	public static var worldBounds(default, null):FlxRect = FlxRect.get();
 
-	#if FLX_SAVE
-	/**
-	 * A `FlxSave` used internally by flixel to save sound preferences and
-	 * the history of the console window, but no reason you can't use it for your own stuff too!
-	 */
-	public static var save(default, null):FlxSave = new FlxSave();
-	#end
-
 	#if FLX_CHROMA_SAVE
 	/**
 	 * A `FlxChromaSaveManager` for any use!
 	 * Used internally by flixel-brainy
 	 */
-	public static var chromaSave(default, null):FlxChromaSaveManager = new FlxChromaSaveManager();
+	public static var chromaSave:FlxChromaSaveManager;
+	#end
+
+	#if FLX_SAVE
+	/**
+	 * A `FlxSave` used internally by flixel to save sound preferences and
+	 * the history of the console window, but no reason you can't use it for your own stuff too!
+	 */
+	public static var save:FlxSave;
 	#end
 
 	/**
@@ -634,6 +634,7 @@ class FlxG
 	@:allow(flixel.FlxGame.new)
 	static function init(game:FlxGame, width:Int, height:Int):Void
 	{
+		
 		if (width < 0)
 			width = -width;
 		if (height < 0)
@@ -675,7 +676,7 @@ class FlxG
 		accelerometer = new FlxAccelerometer();
 		#end
 
-		#if FLX_SAVE
+		#if (FLX_SAVE || FLX_CHROMA_SAVE)
 		initSave();
 		#end
 
@@ -731,9 +732,11 @@ class FlxG
 		FlxObject.defaultPixelPerfectPosition = renderBlit;
 	}
 
-	#if (FLX_SAVE)
+	#if (FLX_SAVE || FLX_CHROMA_SAVE)
 	static function initSave()
 	{
+		chromaSave = new FlxChromaSaveManager();
+		save = new FlxSave();
 		// Don't init if the FlxG.save.bind was manually called before the FlxGame was created
 		if (save.isBound)
 			return;

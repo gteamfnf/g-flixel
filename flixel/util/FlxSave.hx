@@ -5,6 +5,7 @@ import openfl.errors.Error;
 import openfl.net.SharedObject;
 import openfl.net.SharedObjectFlushStatus;
 
+#if !FLX_REPLACE_FLX_SAVE
 /**
  * A class to help automate and simplify save game functionality. A simple wrapper for the OpenFl's
  * SharedObject, with a couple helpers. It's used automatically by various flixel utilities like
@@ -669,3 +670,8 @@ enum FlxSaveStatus
 	 */
 	ERROR(msg:String);
 }
+#else
+import flixel.util.FlxSaveWrapper;
+
+typedef FlxSave = FlxSaveWrapper;
+#end
