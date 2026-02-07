@@ -371,7 +371,7 @@ class SoundFrontEnd
 		#end
 	}
 
-	function new()
+	public function new()
 	{
 		#if FLX_SAVE
 		loadSavedPrefs();
